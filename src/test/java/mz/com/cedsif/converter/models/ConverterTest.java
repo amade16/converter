@@ -18,8 +18,8 @@ public class ConverterTest {
 	
 	@Test
 	public void deveConverterNumerosMaioresQue1() {
-		converter.setValorDesejado("X");
+		converter.setValorDesejado("MMM");
 		
-		assertThat(converter.converter_arabico_romano(), equalTo(10));
+		assertThat(converter.converterArabicoRomano(), equalTo(2000));
 	}
 }
