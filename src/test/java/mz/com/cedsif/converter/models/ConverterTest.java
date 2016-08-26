@@ -20,6 +20,6 @@ public class ConverterTest {
 	public void deveConverterNumerosMaioresQue1() {
 		converter.setValorDesejado(2);
 		
-		assertThat(converter.converter_arabico_romano(), equalTo("II"));
+		assertThat(converter.converter_arabico_romano(), equalTo("I"));
 	}
 }
