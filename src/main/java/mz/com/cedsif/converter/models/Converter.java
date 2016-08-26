@@ -36,15 +36,24 @@ public class Converter {
 		int valor_convertido=0;
 		
 		for (int i = 0; i < valor_desejado.length()-1; i++) {
+			
+			caracteresLegais(valor_desejado.charAt(i),valor_desejado.charAt(i+1));
+			
 			if (dicionario.get(valor_desejado.charAt(i)) >= dicionario.get(valor_desejado.charAt(i+1))) {
                 valor_convertido += dicionario.get(valor_desejado.charAt(i));
             }
 			else {
 				valor_convertido -= dicionario.get(valor_desejado.charAt(i));
-            }            
+            }      
 		}
 		
 		return valor_convertido;
+	}
+	
+	private void caracteresLegais (char valor_actual, char proximo_valor) {
+		if(dicionario.get(valor_actual)==null || dicionario.get(proximo_valor)==null) {
+			throw new IllegalArgumentException("Erro! O valor introduzido não contém correspondentes romanos válidos!");
+		}
 	}
 
 	private void inicializarDicionario() {
@@ -56,7 +65,6 @@ public class Converter {
 		dicionario.put('C', 100);
 		dicionario.put('D', 500);
 		dicionario.put('M', 1000);
-
 	}
 
 }

@@ -19,12 +19,14 @@ public class ConverterTest {
 	public void deveConverterParaNumericoQualquerRomanoEntre1A3999() {
 		converter.setValorDesejado("MMM");
 
-		assertThat(converter.converterArabicoRomano(), equalTo(2000));
+		assertThat(converter.converterArabicoRomano(), equalTo(3000));
 	}
 	
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void naoDeveAceitarQualquerTipoDeEntrada() {
 		converter.setValorDesejado("cedsif matrix caelum amade hélio nelúcia");
+		
+		converter.converterArabicoRomano();
 	}
 }
