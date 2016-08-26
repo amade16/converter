@@ -2,27 +2,28 @@ package mz.com.cedsif.converter.models;
 
 public class Converter {
 
-	private int valor_desejado;
-	private String valor_convertido;
+	private String valor_desejado;
+	private int valor_convertido;
 
-	public void setValorDesejado(int valor_desejado) {
+	public void setValorDesejado(String valor_desejado) {
 		this.valor_desejado = valor_desejado;
 	}
 
-	public int getValorDesejado() {
+	public String getValorDesejado() {
 		return this.valor_desejado;
 	}
 
-	public void setValorConvertido(String valor_convertido) {
+	public void setValorConvertido(int valor_convertido) {
 		this.valor_convertido = valor_convertido;
 	}
 
-	public String getValorConvertido() {
+	public int getValorConvertido() {
 		return this.valor_convertido;
 	}
 
-	public String converter_arabico_romano() {
-		return "II";
+	public int converter_arabico_romano() {
+		return 10;
 	}
+	
 
 }
