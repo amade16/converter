@@ -25,7 +25,7 @@ public class ConverterTest {
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void naoDeveAceitarQualquerTipoDeEntrada() {
-		converter.setValorDesejado("cedsif matrix caelum amade hélio nelúcia");
+		converter.setValorDesejado("cedsif matrix caelum amade hélio nelúcia 2016");
 		
 		converter.converterArabicoRomano();
 	}
