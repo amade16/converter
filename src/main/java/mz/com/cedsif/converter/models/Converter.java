@@ -34,8 +34,8 @@ public class Converter {
 
 	private int resultadoDaConversaoArabicoRomano(String valor_desejado) {
 		int valor_convertido=0;
-		
-		for (int i = 0; i < valor_desejado.length()-1; i++) {
+		int i=0;
+		for (i=0; i < valor_desejado.length()-1; i++) {
 			
 			caracteresLegais(valor_desejado.charAt(i),valor_desejado.charAt(i+1));
 			
@@ -46,6 +46,8 @@ public class Converter {
 				valor_convertido -= dicionario.get(valor_desejado.charAt(i));
             }      
 		}
+		
+		valor_convertido += dicionario.get(valor_desejado.charAt(i));
 		
 		return valor_convertido;
 	}
