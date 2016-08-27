@@ -4,15 +4,15 @@ import java.util.HashMap;
 
 public class Converter {
 
-	private String valor_desejado;
+	private String valor_por_converter;
 	private Integer valor_convertido;
 
-	public void setValorDesejado(String valor_desejado) {
-		this.valor_desejado = valor_desejado;
+	public void setValorDesejado(String valor_por_converter) {
+		this.valor_por_converter = valor_por_converter;
 	}
 
 	public String getValorDesejado() {
-		return this.valor_desejado;
+		return this.valor_por_converter;
 	}
 
 	public void setValorConvertido(int valor_convertido) {
@@ -25,19 +25,19 @@ public class Converter {
 
 	public int converterArabicoRomano() {
 
-		validarCaracteresInvalidos(this.valor_desejado);
+		validarCaracteresInvalidos(this.valor_por_converter);
 
-		validarRepeticao(this.valor_desejado);
+		validarRepeticao(this.valor_por_converter);
 
-		// validarOrdenacao(this.valor_desejado);
+		validarAntecedentes(this.valor_por_converter);
 
-		return resultadoConversao(this.valor_desejado);
+		return resultadoConversao(this.valor_por_converter);
 	}
 
-	private void validarCaracteresInvalidos(String valor_desejado) {
+	private void validarCaracteresInvalidos(String valor_por_converter) {
 
-		for (int i = 0; i <= valor_desejado.length() - 1; i++) {
-			char caracter_actual = valor_desejado.charAt(i); 
+		for (int i = 0; i <= valor_por_converter.length() - 1; i++) {
+			char caracter_actual = valor_por_converter.charAt(i); 
 			if (getValidade(caracter_actual)) {
 				throw new IllegalArgumentException("Erro! Caracteres inválidos!");
 			}
@@ -49,22 +49,22 @@ public class Converter {
 	}
 	
 	
-	private void validarRepeticao(String valor_desejado) {
-		char[] caracteres_no_valor_desejado = valor_desejado.toCharArray();
+	private void validarRepeticao(String valor_por_converter) {
+		char[] caracteres_no_valor_por_converter = valor_por_converter.toCharArray();
 
-		for (int i = 0; i < caracteres_no_valor_desejado.length; i++) {
-			if (excedeuOcorrencias(caracteres_no_valor_desejado,caracteres_no_valor_desejado[i])) {
+		for (int i = 0; i < caracteres_no_valor_por_converter.length; i++) {
+			if (excedeuOcorrencias(caracteres_no_valor_por_converter,caracteres_no_valor_por_converter[i])) {
 				throw new IllegalArgumentException("Erro! Repetições inválidas!");
 			}
 		}
 	}
 
-	private boolean excedeuOcorrencias(char[] valor_desejado_caracteres, char caracter_actual) {
+	private boolean excedeuOcorrencias(char[] valor_por_converter_caracteres, char caracter_actual) {
 		int contador_ocorrencias = 0;
 		int ocorrencia_maxima = getOcorrenciaMaxima(caracter_actual);
 
-		for (int i = 0; i < valor_desejado_caracteres.length; i++) {
-			if (valor_desejado_caracteres[i] == caracter_actual) {
+		for (int i = 0; i < valor_por_converter_caracteres.length; i++) {
+			if (valor_por_converter_caracteres[i] == caracter_actual) {
 				contador_ocorrencias++;
 			}
 			if (contador_ocorrencias > ocorrencia_maxima) {
@@ -78,21 +78,24 @@ public class Converter {
 		return Romano.valueOf(caracter_actual+"").getOcorrenciaMaxima();
 	}
 	
+	private void validarAntecedentes(String valor_por_converter) {
+		
+	}
 	
-	private int resultadoConversao(String valor_desejado) {
+	private int resultadoConversao(String valor_por_converter) {
 
 		int valor_convertido = 0;
-		int tamanho_do_valor_desejado = valor_desejado.length() - 1;
+		int tamanho_do_valor_por_converter = valor_por_converter.length() - 1;
 
-		for (int i = 0; i <= tamanho_do_valor_desejado; i++) {
+		for (int i = 0; i <= tamanho_do_valor_por_converter; i++) {
 
-			char caracter_actual = valor_desejado.charAt(i);
+			char caracter_actual = valor_por_converter.charAt(i);
 
-			if (i == valor_desejado.length() - 1) {
+			if (i == valor_por_converter.length() - 1) {
 				valor_convertido += getArabicoCorrespondente(caracter_actual);
 			} else {
 
-				char proximo_caracter = valor_desejado.charAt(i + 1);
+				char proximo_caracter = valor_por_converter.charAt(i + 1);
 
 				if (getArabicoCorrespondente(caracter_actual) >= getArabicoCorrespondente(proximo_caracter)) {
 					valor_convertido += getArabicoCorrespondente(caracter_actual);
