@@ -30,15 +30,15 @@ public enum Romano {
 		return lista_de_caracteres_validos;
 	}
 
-	public int getArabico_correspondente() {
+	public int getArabicoCorrespondente() {
 		return arabico_correspondente;
 	}
 
-	public int getOcorrencia_maxima() {
+	public int getOcorrenciaMaxima() {
 		return ocorrencia_maxima;
 	}
 
-	public ArrayList<Character> getRomanos_antecedentes_validos() {
+	public ArrayList<Character> getRomanosAntecedentesValidos() {
 		return romanos_antecedentes_validos;
 	}
 	
