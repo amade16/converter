@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Converter {
 
 	private String valor_desejado;
-	private int valor_convertido;
+	private Integer valor_convertido;
 
 	private static HashMap<Character, Integer> caracteres_validos;
 
@@ -35,31 +35,35 @@ public class Converter {
 
 		validarRepeticao(this.valor_desejado);
 
+		// validarOrdenacao(this.valor_desejado);
+
 		return resultadoConversao(this.valor_desejado);
 	}
 
 	private int resultadoConversao(String valor_desejado) {
 
 		int valor_convertido = 0;
+		int tamanho_do_valor_desejado = valor_desejado.length() - 1;
 
-		for (int i = 0; i <= valor_desejado.length() - 1; i++) {
-			
-			Character caracter_actual = valor_desejado.charAt(i);
-			
-			
-			if(i==valor_desejado.length() - 1) {
+		for (int i = 0; i <= tamanho_do_valor_desejado; i++) {
+
+			char caracter_actual = valor_desejado.charAt(i);
+
+			if (i == valor_desejado.length() - 1) {
 				valor_convertido += mapearRomanoNumerico(caracter_actual);
-			}
-			else {Character proximo_caracter = valor_desejado.charAt(i + 1);
+			} else {
+
+				char proximo_caracter = valor_desejado.charAt(i + 1);
+
 				if (mapearRomanoNumerico(caracter_actual) >= mapearRomanoNumerico(proximo_caracter)) {
 					valor_convertido += mapearRomanoNumerico(caracter_actual);
 				} else {
 					valor_convertido -= mapearRomanoNumerico(caracter_actual);
 				}
 			}
-			
+
 		}
-		
+
 		return valor_convertido;
 	}
 
@@ -68,11 +72,12 @@ public class Converter {
 	}
 
 	private void validarCaracteresInvalidos(String valor_desejado) {
-		
-		for (int i = 0; i < valor_desejado.length() - 1; i++) {
-			
+
+		for (int i = 0; i <= valor_desejado.length() - 1; i++) {
+
 			if (caracteres_validos.get(valor_desejado.charAt(i)) == null) {
-				throw new IllegalArgumentException("Erro! Caracteres inválidos!");
+				throw new IllegalArgumentException(
+						"Erro! Caracteres inválidos!");
 			}
 		}
 	}
@@ -81,44 +86,29 @@ public class Converter {
 		char[] caracteres_no_valor_desejado = valor_desejado.toCharArray();
 
 		for (int i = 0; i < caracteres_no_valor_desejado.length; i++) {
-			if (contarOcorrencias(caracteres_no_valor_desejado,caracteres_no_valor_desejado[i])) {
-				throw new IllegalArgumentException("Erro! Repetições inválidas!");
+			if (contarOcorrencias(caracteres_no_valor_desejado,
+					caracteres_no_valor_desejado[i])) {
+				throw new IllegalArgumentException(
+						"Erro! Repetições inválidas!");
 			}
 		}
 	}
 
 	public boolean contarOcorrencias(char[] valor_desejado_caracteres, char caracter_actual) {
-		String caracteres_que_podem_ocorrer_3_vez = "IXCM";
-
-		String caracteres_que_podem_ocorrer_1_vez = "VLD";
-
+		
+		Romano propriedades_romanoRomano=Romano.valueOf(caracter_actual+"");
+		
+		
 		int contador_ocorrencias = 0;
 
-		// se existir possso em seguida contar a ocorrencia
-		if (caracteres_que_podem_ocorrer_3_vez.indexOf(caracter_actual) > -1) {
-			for (int i = 0; i < valor_desejado_caracteres.length; i++) {
-				if (valor_desejado_caracteres[i] == caracter_actual) {
-					contador_ocorrencias++;
-				}
-
-				if (contador_ocorrencias > 3) {
-					return true;
-				}
+		for (int i = 0; i < valor_desejado_caracteres.length; i++) {
+			if (valor_desejado_caracteres[i] == caracter_actual) {
+				contador_ocorrencias++;
 			}
-		} else {
-			if (caracteres_que_podem_ocorrer_1_vez.indexOf(caracter_actual) > -1) {
-				for (int i = 0; i < valor_desejado_caracteres.length; i++) {
-					if (valor_desejado_caracteres[i] == caracter_actual) {
-						contador_ocorrencias++;
-					}
-
-					if (contador_ocorrencias > 1) {
-						return true;
-					}
-				}
+			if (contador_ocorrencias > propriedades_romanoRomano.getOcorrencia_maxima()) {
+				return true;
 			}
 		}
-
 		return false;
 	}
 

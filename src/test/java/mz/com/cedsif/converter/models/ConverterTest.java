@@ -1,5 +1,7 @@
 package mz.com.cedsif.converter.models;
 
+import java.util.LinkedList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +13,7 @@ public class ConverterTest {
 	private Converter converter;
 
 	@Before
-	public void setUp() {
+	public void setUp() {		
 		converter = new Converter();
 	}
 
