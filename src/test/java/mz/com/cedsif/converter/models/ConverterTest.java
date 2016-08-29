@@ -191,5 +191,55 @@ public class ConverterTest {
 		converter.setValorDesejado("XLIIICMXL");		
 		converter.converterArabicoRomano();
 	}
-	//END SUBTRACOES SEQUENCIAS
+	//END SUBTRACCOES SEQUENCIAS
+	
+	//START SEQUENCIA ANTES DE SUBTRACCOES
+	@Test(expected=IllegalArgumentException.class)
+	public void sequenciaDe1AntesDeUmaSubtraccao() {
+		converter.setValorDesejado("IIX");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("IIV");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("IIIX");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("IIIV");		
+		converter.converterArabicoRomano();
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void sequenciaDe10AntesDeUmaSubtraccao() {
+		converter.setValorDesejado("XXL");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("XXC");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("XXXL");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("XXXC");		
+		converter.converterArabicoRomano();
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void sequenciaDe100AntesDeUmaSubtraccao() {
+		converter.setValorDesejado("CCD");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("CCM");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("CCCD");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("CCCM");		
+		converter.converterArabicoRomano();
+		
+	}
+	//END SEQUENCIA DEPOIS DE SUBTRACCOES
 }
