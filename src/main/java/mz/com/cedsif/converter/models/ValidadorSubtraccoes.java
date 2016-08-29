@@ -35,7 +35,18 @@ public class ValidadorSubtraccoes implements Validador {
 			}
 		}
 		
-		
+		for (int j=0;j<subtraccoesEncontradas.size();j++) {
+			String subtraccao_actual=subtraccoesEncontradas.get(j);
+			char primeiro_valor_da_subtracao=subtraccao_actual.charAt(0);
+			int indice_inicial_da_subtraccao=valor_por_converter.indexOf(subtraccao_actual);
+			if(indice_inicial_da_subtraccao>0) {
+				char valor_antes_da_subtraccao=valor_por_converter.charAt(indice_inicial_da_subtraccao-1);
+			
+				if(valor_antes_da_subtraccao==primeiro_valor_da_subtracao) {
+					throw new IllegalArgumentException("Erro! Existe subtraccoes com sequencias antecedentes!");
+				}
+			}
+		}
 	}
 	
 	private int getArabicoCorrespondente(Character caracter_actual) {
