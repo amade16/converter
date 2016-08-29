@@ -177,4 +177,10 @@ public class ConverterTest {
 	//TESTAR VALORES ANTECEDENTES
 	
 	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void naoDeveAceitar() {
+		converter.setValorDesejado("IXIX");		
+		converter.converterArabicoRomano();
+	}
 }
