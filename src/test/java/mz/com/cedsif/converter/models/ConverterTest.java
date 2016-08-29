@@ -1,7 +1,5 @@
 package mz.com.cedsif.converter.models;
 
-import java.util.LinkedList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,13 +16,16 @@ public class ConverterTest {
 	}
 
 	@Test
-	public void deveConverterParaNumericoQualquerRomanoEntre1A3999() {
+	public void deveConverterParaNumericoQualquerRomanoValidoEntre1A3999() {
 		converter.setValorDesejado("XXXVII");
 		assertThat(converter.converterArabicoRomano(), equalTo(37));
 		
 		converter.setValorDesejado("XIX");
 		assertThat(converter.converterArabicoRomano(), equalTo(19));
 		
+		
+		converter.setValorDesejado("XXXIX");
+		assertThat(converter.converterArabicoRomano(), equalTo(39));
 		
 		converter.setValorDesejado("LIV");
 		assertThat(converter.converterArabicoRomano(), equalTo(54));
@@ -33,8 +34,14 @@ public class ConverterTest {
 		converter.setValorDesejado("CXXIX");
 		assertThat(converter.converterArabicoRomano(), equalTo(129));
 		
-		converter.setValorDesejado("M");
-		assertThat(converter.converterArabicoRomano(), equalTo(1000));		
+		converter.setValorDesejado("MM");
+		assertThat(converter.converterArabicoRomano(), equalTo(2000));
+	}
+	
+	@Test
+	public void deveConverterParaNumericoQualquerRomanoValidoEntre1A3999IndependenteDoFormato() {
+		converter.setValorDesejado("D");		
+		assertThat(converter.converterArabicoRomano(), equalTo(500));		
 	}
 	
 	
@@ -48,11 +55,69 @@ public class ConverterTest {
 	public void naoDeveConterVLDMaisQue1Vez() {
 		converter.setValorDesejado("VV");		
 		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("LL");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("DD");		
+		converter.converterArabicoRomano();
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void naoDeveConterIXCMMaisQue3Vezes() {
-		converter.setValorDesejado("MCMLXXXIVX");		
+	public void naoDeveConterIXCMMaisQue3VezesSequencialmente() {
+		converter.setValorDesejado("iiii");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("xxxx");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("cccc");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("mmmm");		
+		converter.converterArabicoRomano();			
+	}
+	
+	
+	//TESTAR VALORES ANTECEDENTES
+	@Test
+	public void todosOsValoresAntecedentesAo1DevemSerIgualOuSuperior() {
+		converter.setValorDesejado("II");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("VI");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("XI");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("LI");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("CI");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("DI");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("MI");		
+		converter.converterArabicoRomano();
+		
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void todosOsValoresAntecedentesAo10DevemSerSuperioresExcepto1() {
+		converter.setValorDesejado("VX");		
 		converter.converterArabicoRomano();
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void todosOsValoresAntecedentesAo50DevemSerSuperioresExcepto10() {
+		converter.setValorDesejado("IL");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("VL");		
+		converter.converterArabicoRomano();
+	}
+	//TESTAR VALORES ANTECEDENTES
 }
