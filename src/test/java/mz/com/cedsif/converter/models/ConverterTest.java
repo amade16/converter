@@ -174,13 +174,22 @@ public class ConverterTest {
 		converter.converterArabicoRomano();
 	}
 	//VALIDAR 50
-	//TESTAR VALORES ANTECEDENTES
+	//END TESTAR VALORES ANTECEDENTES
 	
-	
-	
+	//START SUBTRACCOES SEQUENCIAS
 	@Test(expected=IllegalArgumentException.class)
-	public void naoDeveAceitar() {
+	public void naoDeveAceitarSubtraccoesSequenciasUmaAposOutra() {
 		converter.setValorDesejado("IXIX");		
 		converter.converterArabicoRomano();
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void naoDeveAceitarMesmoTipoDeSubtraccaoNumUnicoNumero() {
+		converter.setValorDesejado("CMIXCM");		
+		converter.converterArabicoRomano();
+		
+		converter.setValorDesejado("XLIIICMXL");		
+		converter.converterArabicoRomano();
+	}
+	//END SUBTRACOES SEQUENCIAS
 }
