@@ -10,7 +10,7 @@ public enum Romano {
 	
 	X (10,3,true,Integer.MAX_VALUE,false,criar_lista_de_caracteres_validos("IX")), //ATRÁS DO X SÓ PODE TER O I
 	
-	L (50,Integer.MAX_VALUE,false,1,true,criar_lista_de_caracteres_validos("XL")), //ATRÁS DO L SÓ PODE TER O X
+	L (50,Integer.MAX_VALUE,false,1,true,criar_lista_de_caracteres_validos("X")), //ATRÁS DO L SÓ PODE TER O X
 	
 	C (100,3,true,Integer.MAX_VALUE,false,criar_lista_de_caracteres_validos("XC")), //ATRÁS DO C SÓ PODE TER X
 	
